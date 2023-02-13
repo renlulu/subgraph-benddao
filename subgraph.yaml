@@ -1,0 +1,54 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: mainnet
+    source:
+      address: "0x290afB1f68131D39De177199b57Fb613a31066a4"
+      abi: Contract
+      startBlock: 16620294
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Auction
+        - Borrow
+        - Deposit
+        - Liquidate
+        - Paused
+        - PausedTimeUpdated
+        - Redeem
+        - Repay
+        - ReserveDataUpdated
+        - Unpaused
+        - Withdraw
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: Auction(address,indexed address,uint256,indexed address,uint256,address,indexed address,uint256)
+          handler: handleAuction
+        - event: Borrow(address,indexed address,uint256,address,uint256,indexed address,uint256,uint256,indexed uint16)
+          handler: handleBorrow
+        - event: Deposit(address,indexed address,uint256,indexed address,indexed uint16)
+          handler: handleDeposit
+        - event: Liquidate(address,indexed address,uint256,uint256,indexed address,uint256,indexed address,uint256)
+          handler: handleLiquidate
+        - event: Paused()
+          handler: handlePaused
+        - event: PausedTimeUpdated(uint256,uint256)
+          handler: handlePausedTimeUpdated
+        - event: Redeem(address,indexed address,uint256,uint256,indexed address,uint256,indexed address,uint256)
+          handler: handleRedeem
+        - event: Repay(address,indexed address,uint256,indexed address,uint256,indexed address,uint256)
+          handler: handleRepay
+        - event: ReserveDataUpdated(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleReserveDataUpdated
+        - event: Unpaused()
+          handler: handleUnpaused
+        - event: Withdraw(indexed address,indexed address,uint256,indexed address)
+          handler: handleWithdraw
+      file: ./src/contract.ts

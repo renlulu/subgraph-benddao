@@ -1,0 +1,134 @@
+type Auction @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  reserve: Bytes! # address
+  bidPrice: BigInt! # uint256
+  nftAsset: Bytes! # address
+  nftTokenId: BigInt! # uint256
+  onBehalfOf: Bytes! # address
+  borrower: Bytes! # address
+  loanId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Borrow @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  reserve: Bytes! # address
+  amount: BigInt! # uint256
+  nftAsset: Bytes! # address
+  nftTokenId: BigInt! # uint256
+  onBehalfOf: Bytes! # address
+  borrowRate: BigInt! # uint256
+  loanId: BigInt! # uint256
+  referral: Int! # uint16
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Deposit @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  reserve: Bytes! # address
+  amount: BigInt! # uint256
+  onBehalfOf: Bytes! # address
+  referral: Int! # uint16
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Liquidate @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  reserve: Bytes! # address
+  repayAmount: BigInt! # uint256
+  remainAmount: BigInt! # uint256
+  nftAsset: Bytes! # address
+  nftTokenId: BigInt! # uint256
+  borrower: Bytes! # address
+  loanId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Paused @entity(immutable: true) {
+  id: Bytes!
+
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PausedTimeUpdated @entity(immutable: true) {
+  id: Bytes!
+  startTime: BigInt! # uint256
+  durationTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Redeem @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  reserve: Bytes! # address
+  borrowAmount: BigInt! # uint256
+  fineAmount: BigInt! # uint256
+  nftAsset: Bytes! # address
+  nftTokenId: BigInt! # uint256
+  borrower: Bytes! # address
+  loanId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Repay @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  reserve: Bytes! # address
+  amount: BigInt! # uint256
+  nftAsset: Bytes! # address
+  nftTokenId: BigInt! # uint256
+  borrower: Bytes! # address
+  loanId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ReserveDataUpdated @entity(immutable: true) {
+  id: Bytes!
+  reserve: Bytes! # address
+  liquidityRate: BigInt! # uint256
+  variableBorrowRate: BigInt! # uint256
+  liquidityIndex: BigInt! # uint256
+  variableBorrowIndex: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Unpaused @entity(immutable: true) {
+  id: Bytes!
+
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Withdraw @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  reserve: Bytes! # address
+  amount: BigInt! # uint256
+  to: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
